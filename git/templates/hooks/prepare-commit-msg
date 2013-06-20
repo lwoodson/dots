@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+class MessageWriter
+  # TODO change the pattern to be an environment variable
+  # TODO don't make this tied to jira
+  JIRA_PATTERN = /(PA-\d+)/
+  attr_reader :contents_minus_comments
+  def initialize(path)
+    @path = path
+    @contents = File.read(path)
+    lines = @contents.split("\n").reject{|l| l =~ /^#/}
+    @contents_minus_comments = lines.join("\n")
+  end
+
+  def write
+    unless jira_from(contents_minus_comments)
+      branch = `git branch`.split("\n").grep(/\*/).first.split[-1]
+      if jira_from(branch)
+        message = "#{jira_from(branch)}: #{@contents}"
+        File.open(@path, 'w') {|f| f.write(message)}
+      end
+    end
+  end
+
+  private
+  def jira_from(str)
+    str.match(JIRA_PATTERN).captures.first rescue nil
+  end
+end
+
+MessageWriter.new(ARGV[0]).write

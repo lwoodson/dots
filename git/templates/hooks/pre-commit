@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+
+begin
+  cmd = 'git diff --cached --name-only | grep ".rb\|.tasks\|.erb"'
+  unless `#{cmd}`.empty?
+    gem 'rubocop'
+    require 'rainbow'
+    str = <<-EOS
+
+Let the style fight begin!
+
+  EOS
+    STDOUT.write(str.foreground(:yellow))
+
+  cmd = 'git diff --cached --name-only | grep ".rb\|.tasks\|.erb" | xargs -I{} rubocop {}'
+    if system(cmd)
+      STDOUT.write("FLAWLESS VICTORY\n".foreground(:green))
+    else
+      STDERR.write("\nSTYLE FATALITY\n".foreground(:red))
+      str = <<-EOS
+
+It could be, however, that is is not your fault at all.  It could be that
+someone else wrote this code and there is no safe way to clean this up.  If that
+is the case, use commit with the --no-verify flag.
+      EOS
+      STDERR.write(str)
+      exit(-1)
+    end
+  end
+rescue Gem::LoadError
+end

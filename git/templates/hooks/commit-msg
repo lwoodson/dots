@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+commit_msg = `grep -v # #{ARGV[0]}`
+unless commit_msg =~ /PA-\d+/
+  puts <<-EOS
+
+WARNING:  You did not put a JIRA # in your commit.
+          Are you sure you want to do this?  If not,
+          use 'git commit --amend' to add one.
+
+  EOS
+end
+""
