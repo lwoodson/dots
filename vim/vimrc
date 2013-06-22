@@ -28,8 +28,9 @@ nmap <F4> :CommandT<CR>
 map <F5> :vsplit<CR>
 map <F6> :split<CR>
 nmap <F7> :exec '!ack -ri ' . @0<CR>
-nmap <F11> :TagbarToggle<CR>
-nmap <F12> :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+nmap <F10> :TagbarToggle<CR>
+nmap <F11> :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+nmap <F12> :help myprefs<CR>
 map <up> <C-W><Up>
 map <down> <C-W><Down>
 map <left> <C-W><Left>

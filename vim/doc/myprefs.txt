@@ -1,0 +1,26 @@
+*myprefs.txt*
+These are my various preferences that affect the default behavior of Vim.
+
+KEYBINDINGS
+===========
+<F1>            Runs rspec on the file in the current buffer on a tmux]
+                session named dev, window 0 pane 0.  If the test fails,
+                a bell is rung.
+<F2>            Runs RuboCop on the current file and plays a sound if
+                it fails.
+<F3>            Shortcut for :Explore to navigate filesystem from pwd.
+<F4>            Command-T shortcut to search and open files.
+<F5>            Shortcut for :vsplit for vertically splitting a buffer.
+<F6>            Shortcut for :hsplit to horizontally split a buffer.
+<F7>            Ack in shell for the text in register 0.
+<F10>           Shortcut for :TagbarToggle to show outline view of tags
+                in current file.
+<F11>           Reload the .vimrc file to pick up changes.
+<F12>           Show this help doc.
+
+ARROW KEYS
+=======================================================================
+<Up>            Moves to buffer above the current buffer.
+<down>          Moves to buffer below the current buffer.
+<right>         Moves to buffer to the right of the current buffer.
+<left>          Moves to buffer to the left of the current buffer.
