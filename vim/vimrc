@@ -1,13 +1,17 @@
+" Colors
 syntax on
 set number
 color jellybeans
+set t_Co=256
 
+" Tabs
 set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
 set nowrap
 
+" Better tab matching for paths
 :set wildmode=full
 
 highlight Fixit ctermbg=darkred guibg=darkred
@@ -15,23 +19,50 @@ match Fixit /\%81v.\+/
 2match Fixit /\s\+$/
 
 set guifont=Monaco:h13
+set hlsearch
+set showmatch
+set mouse=a
 
 "Execute command silently then redraw the buffer.
 command! -nargs=1 Silently
 \ | execute ':silent !'.<q-args>
 \ | execute ':redraw!'
 
-map <F1> :Silently tmux send-keys -t dev:0.0 'bundle exec rspec %:p -c \|\| echo -e \\a' Enter<CR>
-map <F2> :Silently tmux send-keys -t dev:0.0 'rubocop %:p \|\| echo -e \\a' Enter<CR>
-map <F3> :Explore .<CR>
+let mapleader = "\<Tab>"
+
+" No swp files and such, we're editing files checked in to svn.
+set nobackup
+set nowb
+set noswapfile
+
+"TDD support commands
+command! -nargs=0 MarkFileToTest
+\ | execute "silent !tmux send-keys -t dev.0 'export FILE_TO_TEST=%:p' Enter"
+\ | execute ':redraw!'
+
+command! -nargs=0 RunTest
+\ | execute "silent !tmux send-keys -t dev.0 'spec_test' Enter"
+\ | execute ':redraw!'
+
+map <Leader>t :MarkFileToTest<CR>
+
+" High use keys
+map <F1> :RunTest<CR>
+map <F3> :Explore<CR>
 nmap <F4> :CommandT<CR>
-map <F5> :vsplit<CR>
-map <F6> :split<CR>
-nmap <F7> :exec '!ack -ri ' . @0<CR>
+nmap <F9> :exec '!ack -ri ' . @0<CR>
 nmap <F10> :TagbarToggle<CR>
 nmap <F11> :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 nmap <F12> :help myprefs<CR>
-map <up> <C-W><Up>
-map <down> <C-W><Down>
-map <left> <C-W><Left>
-map <right> <C-W><Right>
+
+map <Leader>v :Vexplore<CR>
+map <Leader>h :Hexplore<CR>
+
+" Buffer nav
+map <C-k> <C-W><Up>
+map <C-j> <C-W><Down>
+map <C-h> <C-W><Left>
+map <C-l> <C-W><Right>
+map <Leader>l :b#<CR>
+map <Leader>. :bnext<CR>
+map <Leader>, :bprevious<CR>
