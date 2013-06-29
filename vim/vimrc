@@ -37,11 +37,11 @@ set noswapfile
 
 "TDD support commands
 command! -nargs=0 MarkFileToTest
-\ | execute "silent !tmux send-keys -t dev.0 'export FILE_TO_TEST=%:p' Enter"
+\ | execute "silent !tmux send-keys -t dev:test.1 'export FILE_TO_TEST=%:p' Enter"
 \ | execute ':redraw!'
 
 command! -nargs=0 RunTest
-\ | execute "silent !tmux send-keys -t dev.0 'spec_test' Enter"
+\ | execute "silent !tmux send-keys -t dev:test.1 'spec_test' Enter"
 \ | execute ':redraw!'
 
 map <Leader>t :MarkFileToTest<CR>
