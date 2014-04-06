@@ -2,7 +2,7 @@
 	autocrlf = input
 	safecrlf = true
 [user]
-	name = lwoodson
+	name = Lance Woodson
 	email = lance@webmaneuvers.com
 [diff]
 	tool = vimdiff
