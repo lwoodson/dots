@@ -68,3 +68,7 @@ map <C-l> <C-W><Right>
 map <Leader>l :b#<CR>
 map <Leader>. :bnext<CR>
 map <Leader>, :bprevious<CR>
+
+" Execute last command in work pane 2
+map <Leader>t :call system('tmux send-keys -t dev:work.1 "!!" Enter')<CR>
+
