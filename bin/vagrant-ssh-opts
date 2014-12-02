@@ -1,0 +1,1 @@
+vagrant ssh-config | awk -v ORS=' ' '{print "-o " $1 "=" $2}'

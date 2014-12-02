@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Change these settings to match what you are wanting to do
+SERVER=localhost
+
+OPTIONS=`vagrant ssh-config | awk -v ORS=' ' '{print "-o " $1 "=" $2}'`
+
+scp ${OPTIONS} vagrant@$SERVER:$FILE
