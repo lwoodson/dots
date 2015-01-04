@@ -1,0 +1,2 @@
+#!/bin/bash
+knife ssh $1 \"$2\" -x shipit -G ops01.seadmin.com -i ~/.ssh/shipit_key

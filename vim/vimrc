@@ -36,6 +36,8 @@ let mapleader = "\<Tab>"
 set nobackup
 set nowb
 set noswapfile
+filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 
 "TDD support commands
 command! -nargs=0 MarkFileToTest
@@ -46,10 +48,8 @@ command! -nargs=0 RunTest
 \ | execute "silent !tmux send-keys -t dev:test.1 'spec_test' Enter"
 \ | execute ':redraw!'
 
-map <Leader>t :MarkFileToTest<CR>
-
 " High use keys
-map <F1> :RunTest<CR>
+map <Space> :call system('tmux send-keys -t dev:work.1 "!!" Enter')<CR>
 map <F3> :Explore<CR>
 nmap <F4> :CommandT<CR>
 nmap <F9> :exec '!ack -ri ' . @0<CR>
