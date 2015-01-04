@@ -30,7 +30,8 @@ command! -nargs=1 Silently
 \ | execute ':silent !'.<q-args>
 \ | execute ':redraw!'
 
-let mapleader = "\<Tab>"
+"let mapleader = "\<Tab>"
+let mapleader = "\<Space>"
 
 " No swp files and such, we're editing files checked in to svn.
 set nobackup
@@ -44,12 +45,15 @@ command! -nargs=0 MarkFileToTest
 \ | execute "silent !tmux send-keys -t dev:test.1 'export FILE_TO_TEST=%:p' Enter"
 \ | execute ':redraw!'
 
-command! -nargs=0 RunTest
-\ | execute "silent !tmux send-keys -t dev:test.1 'spec_test' Enter"
+command! -nargs=0 IterateCommand
+\ | execute 'wa'
+\ | execute 'silent !tmux send-keys -t dev:work.1 "!!" Enter'
 \ | execute ':redraw!'
 
 " High use keys
-map <Space> :call system('tmux send-keys -t dev:work.1 "!!" Enter')<CR>
+"map <F1> :call system('tmux send-keys -t dev:work.1 "!!" Enter')<CR>
+map <F1> :call system('tmux send-keys -t dev:work.1 "!!" Enter')<CR>
+map <F2> :ProjectTree<CR>
 map <F3> :Explore<CR>
 nmap <F4> :CommandT<CR>
 nmap <F9> :exec '!ack -ri ' . @0<CR>
@@ -59,6 +63,9 @@ nmap <F12> :help myprefs<CR>
 
 map <Leader>v :Vexplore<CR>
 map <Leader>h :Hexplore<CR>
+nmap <Leader>] <C-]>
+nmap <Leader>[ <C-T>
+imap <Tab> <C-X><C-U>
 
 " Buffer nav
 map <C-k> <C-W><Up>
@@ -71,4 +78,5 @@ map <Leader>, :bprevious<CR>
 
 " Execute last command in work pane 2
 map <Leader>t :call system('tmux send-keys -t dev:work.1 "!!" Enter')<CR>
+autocmd BufWritePost * call system('tmux send-keys -t dev:work.1 "!!" Enter')
 
