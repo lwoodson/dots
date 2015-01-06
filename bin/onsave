@@ -1,5 +1,10 @@
 #!/bin/bash
-echo Refreshing ctags...
-ctags -R .
+
+if [ -d '.git' ]
+then
+  echo Refreshing ctags...
+  ctags -R .
+fi
+
 echo Running $ITERATIVE_CMD
 eval $ITERATIVE_CMD
