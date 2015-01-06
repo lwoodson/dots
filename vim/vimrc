@@ -38,7 +38,6 @@ set nobackup
 set nowb
 set noswapfile
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
 
 "TDD support commands
 command! -nargs=0 MarkFileToTest
@@ -77,5 +76,5 @@ map <Leader>, :bprevious<CR>
 
 " Execute last command in work pane 2
 map <Leader>t :call system('tmux send-keys -t dev:work.1 "!!" Enter')<CR>
-autocmd BufWritePost * call system('tmux send-keys -t dev:work.1 "!!" Enter')
+autocmd BufWritePost * call system('tmux send-keys -t dev:work.1 "onsave" Enter')
 

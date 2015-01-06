@@ -1,0 +1,5 @@
+#!/bin/bash
+echo Refreshing ctags...
+ctags -R .
+echo Running $ITERATIVE_CMD
+eval $ITERATIVE_CMD
