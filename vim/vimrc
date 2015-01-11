@@ -1,3 +1,9 @@
+" This is to force using system ruby when loading the ruby
+" filetype plugin.  Loading it with jruby is dog slow.  The
+" system ruby is 1.9.3, so if there are issues w/other ruby
+" versions, I should re-examine this fix
+let g:ruby_path='/usr/bin/ruby'
+
 execute pathogen#infect()
 
 " Colors
