@@ -6,5 +6,9 @@ then
   ctags -R .
 fi
 
-echo Running $ITERATIVE_CMD
-eval $ITERATIVE_CMD
+onsave_pid=$(pidof -x onsave)
+if [ ! -z looper_pid ]
+then
+  echo Running $ITERATIVE_CMD
+  eval $ITERATIVE_CMD
+fi
