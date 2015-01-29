@@ -4,8 +4,6 @@
 " versions, I should re-examine this fix
 let g:ruby_path='/usr/bin/ruby'
 
-execute pathogen#infect()
-
 " Colors
 syntax on
 set number
@@ -84,3 +82,4 @@ map <Leader>, :bprevious<CR>
 map <Leader>t :call system('tmux send-keys -t dev:work.1 "!!" Enter')<CR>
 autocmd BufWritePost * call system('tmux send-keys -t dev:work.1 "onsave" Enter')
 
+au! BufRead,BufNewFile *.haml setfiletype haml
