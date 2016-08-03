@@ -1,10 +1,10 @@
 [core]
-	autocrlf = input
+	autocrlf = false
 	safecrlf = true
 	editor = vim
 [user]
 	name = Lance Woodson
-	email = lance@webmaneuvers.com
+	email = lance.woodson@bazaarvoice.com
 [diff]
 	tool = vimdiff
 [merge]
@@ -15,7 +15,7 @@
 [merge "tool"]
 	prompt = false
 [push]
-	default = matching
+	default = current
 [color]
 	ui = auto
 [color "branch"]

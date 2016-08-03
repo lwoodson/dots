@@ -1,0 +1,14 @@
+#!/bin/bash
+DOCKER_MACHINE=${DOCKER_MACHINE:=default}
+echo "Using $DOCKER_MACHINE docker machine"
+
+STATUS=$(docker-machine status $DOCKER_MACHINE)
+if [  $STATUS = "Stopped" ]; then
+  echo "Starting $DOCKER_MACHINE"
+  docker-machine start $DOCKER_MACHINE
+fi
+
+CURRENT_MACHINE=$(docker-machine active)
+if [ CURRENT_MACHINE != DOCKER_MACHINE ]; then
+  docker-machine env $DOCKER_MACHINE
+fi

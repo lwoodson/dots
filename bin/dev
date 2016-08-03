@@ -2,8 +2,9 @@
 echo 'building...'
 tmux new-session -d -s dev -n work
 tmux split-window -t dev:work -h -p 35
-tmux new-window -t dev -n console
-tmux send-keys -t dev:work.0 'vim' Enter
+tmux new-window -t dev -n eclimd
+#tmux send-keys -t dev:work.0 'vim' Enter
+tmux send-keys -t dev:eclimd 'eclimd -d' Enter
 tmux select-window -t dev:work
 tmux select-pane -t 0
 sleep 1

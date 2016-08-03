@@ -1,0 +1,10 @@
+#!/bin/bash
+droplet=$1
+now=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+echo $droplet
+echo $now
+echo $snapshot
+tugboat halt $droplet
+tugboat snapshot '$snapshot' $droplet
+# TODO fail if not successful
+tugboat destroy $droplet -c

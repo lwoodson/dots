@@ -17,3 +17,5 @@ alias hostip="ip route | grep docker | awk '{ print \$9 }'"
 function spec_test { bundle exec rspec $FILE_TO_TEST -c || beep; }
 
 . ~/.local_bashrc
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
