@@ -43,6 +43,27 @@ set nowb
 set noswapfile
 filetype plugin indent on
 
+" vim-plug
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-fugitive'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'elzr/vim-json'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/syntastic'
+
+call plug#end()
+
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
 "TDD support commands
 command! -nargs=0 MarkFileToTest
 \ | execute "silent !tmux send-keys -t dev:test.1 'export FILE_TO_TEST=%:p' Enter"
